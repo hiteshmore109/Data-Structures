@@ -32,6 +32,8 @@ class SingleLinkedList{
     void display();
     //to count the number of elements in the list
     int length();
+    //to reverse the list
+    SingleLinkedList reverse();
 };
 int SingleLinkedList :: length(){
     Node *temp = head;
@@ -43,7 +45,20 @@ int SingleLinkedList :: length(){
     }
     return count;
 }
-void SingleLinkedList :: insert(int data){
+SingleLinkedList SingleLinkedList::reverse()
+{
+    //creates a new list
+    SingleLinkedList newlist;
+    Node *temp = head;
+    while (temp != NULL) {
+        //will insert the data in the front of newlist ie., starting from the first element the it will keep adding the data to the front resulting the last element of the original list to be the first in newlist
+        newlist.insertfront(temp->data);
+        temp = temp->next;
+    }
+    return newlist;
+}
+void SingleLinkedList ::insert(int data)
+{
     //create a new node with the element as data
     Node *newNode = new Node(data);
     //check if the linked list is empty or not... if empty then change the head pointer to new node
@@ -143,5 +158,8 @@ int main(){
     l.RemoveAt(3);
     cout<<"\n The length of the list is: "<<l.length();
     l.display();
+    SingleLinkedList reverse;
+    reverse = l.reverse();
+    reverse.display();
     return 0;
 }
