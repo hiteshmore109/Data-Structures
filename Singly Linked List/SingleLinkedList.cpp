@@ -154,7 +154,7 @@ int main(){
     l.insertat(3, 2);
     cout<<"\n The length of the list is: "<<l.length();
     l.display();
-    //l = [-1, 0, 2, 3]
+    //l = [-1, 0, 1, 3]
     l.RemoveAt(3);
     cout<<"\n The length of the list is: "<<l.length();
     l.display();
