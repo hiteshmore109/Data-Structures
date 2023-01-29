@@ -94,17 +94,17 @@ void SingleLinkedList :: insertat(int index, int data){
     //create a new node with the element as data, "temp" to store the node at given index and "temp1" to store address of previous node
     Node *newNode = new Node(data), *temp = head, *temp1;
     //if the index given by user is larger than the length of list then stop further steps
-    if(length() < index){
+    if(length() <= index){
         cout<<"\n Index out of range";
         return;
     }
     //if index is one then use insertfront method
-    if(index == 1){
+    if(index == 0){
         insertfront(data);
         return;
     }
     //find the node at given index and store it in temp and its previous node in temp1
-    for(int i = 1; i < index; i++){
+    for(int i = 0; i < index; i++){
         temp1 = temp;
         temp = temp -> next;
     }
@@ -116,12 +116,12 @@ void SingleLinkedList :: insertat(int index, int data){
 void SingleLinkedList :: RemoveAt(int index){
     Node *temp = head, *temp1;
     //if the index given by user is larger than the length of list then stop further steps
-    if(length() < index){
+    if(length() <= index){
         cout<<"\n Index out of range";
         return;
     }
     //find the node at given index and store it in temp and its previous node in temp1
-    for(int i = 1; i < index; i++){
+    for(int i = 0; i < index; i++){
         temp1 = temp;
         temp = temp -> next;
     }
@@ -151,7 +151,7 @@ int main(){
     // l = [-1, 0, 1, 3]
     l.insertfront(-1);
     // l = [-1, 0, 1, 2, 3]
-    l.insertat(4, 2);
+    l.insertat(3, 2);
     cout<<"\n The length of the list is: "<<l.length();
     l.display();
     //l = [-1, 0, 2, 3]
