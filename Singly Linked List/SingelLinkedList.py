@@ -23,8 +23,7 @@ class SingleLinkedList:
     def AddAt(self, index, data):
         count = self.length()
         if index >= count:
-            print("Index out of range")
-            return
+            raise Exception("Node Index Out of Bounds")
         if index == 0:
             self.AddFirst(data)
             return
@@ -37,8 +36,7 @@ class SingleLinkedList:
     def RemoveAt(self, index):
         count = self.length()
         if index >= count:
-            print("Index out of range")
-            return
+            raise Exception("Node Index Out of Bounds")
         itr = self.head
         for i in range(index-1):
             itr = itr.next
