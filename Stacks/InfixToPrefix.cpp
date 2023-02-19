@@ -38,6 +38,10 @@ string infixToPrefix(string equation){
     return output;
 }
 int main(){
-    cout<<infixToPrefix("((a+b+c)*d*(e/f)-g)");
+    string s;
+    cout<<"Enter the infix string: ";
+    cin>>s;
+    cout<<"The entered infix string is: "<<s<<endl;
+    cout<<"The corresponding prefix string is: "<<infixToPrefix(s)<<endl;
     return 0;
 }
