@@ -1,63 +1,55 @@
 /*C++ program to demonstrate the implementation of stacks using arrays*/
 #include<iostream>
-//to give a constant size to the array
-#define Max 4
 using namespace std;
-//since stack and top are the variables to be accessed in every function hence declared globally and top is having an invalid array index indicating stack is empty
-int stack[Max], top = -1;
-//to check whether the stack is full
-int isFull(){
-    if(top == Max - 1)
-        return 1;
-    return 0;
-}
-//to check if the stack is empty
-int isEmpty(){
-    if(top == -1)
-        return 1;
-    return 0;
-}
-//to find out the topmost element in the stack
-int peek(){
-    if(isEmpty()){
-        cout<<"\nStack Underflow";
-        exit(1);
+class Stack{
+    int size, n = -1, *stackarr;
+    public:
+    Stack(){}
+    Stack(int size){
+        this -> size = size;
+        stackarr = new int[size];
     }
-    return stack[top];
-}
-//to insert a data in stack
-void push(int data){
-    if(isFull()){
-        cout<<"Stack Overflow";
-        return;
+    //to check whether the stack is full
+    bool isFull(){
+        return (n == size - 1);
     }
-    top++;
-    stack[top] = data;
-}
-//to remove the peek element from the stack
-int pop(){
-    int value;
-    if(isEmpty()){
-        cout<<"Stack Underflow";
-        exit(1);
+    //to check if the stack is empty
+    bool isEmpty(){
+        return (n == -1);
     }
-    value = stack[top];
-    top--;
-    return value;
-}
-//to print the stack
-void print(){
-    cout<<"\n";
-    if(top == -1){
-        cout<<"Stack underflow";
-        return;
+    //to find out the topmost element in the stack
+    int top(){
+        return stackarr[n];
     }
-    for(int i = top; i >= 0; i--)
-        cout<<stack[i]<<" ";
-    cout<<"\n";
-}
+    //to insert a data in stack
+    void push(int data){
+        if(isFull()){
+            cout<<"Stack Overflow \nCannot Push element "<<data<<"\n";
+            return;
+        }
+        n++;
+        stackarr[n] = data;
+    }
+    //to remove the top element from the stack
+    void pop(){
+        if(isEmpty()){
+            cout<<"Stack Underflow";
+            return;
+        } 
+        n--;
+    }
+    //to print the stack
+    void display(){
+        cout<<endl;
+        for(int i = n; i >= 0; i--) cout<<stackarr[i]<<" ";
+        cout<<endl;
+    }
+};
 int main(){
-    int data, choice;
+    int data, choice, size;
+    cout<<"Enter the size of the stack: ";
+    cin>>size;
+    Stack s(size);
     while(1){
         cout<<"\nEnter the choice to perform the stack operations:\n\
                 \t1.Push\n\
@@ -70,19 +62,19 @@ int main(){
         case 1:
             cout<<"Enter the element to be pushed";
             cin>>data;
-            push(data);
+            s.push(data);
             break;
         case 2:
-            data = pop();
-            cout<<"The popped element is: "<<data;
+            cout<<"The popped element is: "<<s.top();
+            s.pop();
             break;
         case 3:
-            data = peek();
+            data = s.top();
             cout<<"The topmost element in the stack is: "<<data;
             break;
         case 4:
             cout<<"The stack elements are: ";
-            print();
+            s.display();
             break;
         case 5:
             exit(1);
