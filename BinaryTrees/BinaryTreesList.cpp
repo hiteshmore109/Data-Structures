@@ -14,14 +14,6 @@ class Node{
     }
 };
 
-// creating a single node in the tree with value as a parameter
-Node* createBinaryTree(int value){
-    Node *newNode = new Node(value);
-    newNode->left = nullptr;
-    newNode->right = nullptr;
-    return newNode;
-}
-
 //printing the created tree using inorder(left root right) traversal
 void printTreeInorder(Node* root) {
     if (root == nullptr) return;
