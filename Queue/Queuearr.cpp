@@ -1,10 +1,10 @@
 #include<iostream>
 using namespace std;
-class Cqueue{
+class Queue{
     int *queue;
     int first, last, n;
     public:
-    Cqueue(const int& size){
+    Queue(const int& size){
         n = size;
         first = -1;
         last = -1;
@@ -20,17 +20,17 @@ class Cqueue{
     int& operator[](int index) const;
 };
 
-bool Cqueue::isFull() const{
+bool Queue::isFull() const{
     if(last >= n) return true;
     return false;
 }
 
-bool Cqueue::isEmpty() const{
+bool Queue::isEmpty() const{
     if(first == -1 || last == -1) return true;
     return false;
 }
 
-void Cqueue::enqueue(const int& value){
+void Queue::enqueue(const int& value){
     if(isFull()){
         cout<<"Queue is full cannot add new element!";
         exit(1);
@@ -46,7 +46,7 @@ void Cqueue::enqueue(const int& value){
     }
 }
 
-void Cqueue::dequeue(){
+void Queue::dequeue(){
     if(isEmpty()){
         cout<<"Queue is Empty!";
         exit(1);
@@ -56,21 +56,21 @@ void Cqueue::dequeue(){
     last--;
 }
 
-int Cqueue::peek() const
+int Queue::peek() const
 {
     return queue[first];
 }
 
-int Cqueue::size() const{
+int Queue::size() const{
     if(isEmpty()) return 0;
     return (last - first) + 1;
 }
 
-int Cqueue::availableSlots() const{
+int Queue::availableSlots() const{
     return n - (last - first + 1);
 }
 
-int &Cqueue::operator[](int index) const{
+int &Queue::operator[](int index) const{
     if(index < 0 || index >= size()){
         cout<<"Index out of range";
         exit(1);
@@ -79,7 +79,7 @@ int &Cqueue::operator[](int index) const{
 }
 
 int main(){
-    Cqueue q(10);
+    Queue q(10);
     for(int i = 5; i > 0; i--) q.enqueue(i);
     for(int i = 0; i < q.size(); i++) cout<<q[i]<<" ";
     q[3] = 10;
